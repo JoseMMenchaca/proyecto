@@ -1,0 +1,202 @@
+[
+    {
+        "idProveedor": 1,
+        "nombre": "Emitech Corporation",
+        "nombre_contacto": "Anabel Ramírez",
+        "direccion": "123 Calle de los Innovadores",
+        "telefono": "+54 11 5555-8888",
+        "celular": "+54 9 11 2222-3333",
+        "email": "anabel.ramirez@emitech.com",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 2,
+        "nombre": "TechNova Solutions",
+        "nombre_contacto": "Carlos Díaz",
+        "direccion": "456 Avenida de la Tecnología",
+        "telefono": "+55 21 9999-7777",
+        "celular": "+55 9 21 1111-2222",
+        "email": "carlos.diaz@technova.com.br",
+        "estado": "Inactivo"
+    },
+    {
+        "idProveedor": 3,
+        "nombre": "Global Data Systems",
+        "nombre_contacto": "María Gómez",
+        "direccion": "789 Boulevard de la Información",
+        "telefono": "+1 212 555-1212",
+        "celular": "+1 917 555-1212",
+        "email": "maria.gomez@globalsystems.com",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 4,
+        "nombre": "Innovatech Labs",
+        "nombre_contacto": "Pedro Rodríguez",
+        "direccion": "1011 Calle de la Investigación",
+        "telefono": "+44 20 3333-4444",
+        "celular": "+44 7777 8888 9999",
+        "email": "pedro.rodriguez@innovatelabs.co.uk",
+        "estado": "Inactivo"
+    },
+    {
+        "idProveedor": 5,
+        "nombre": "Zenith Corporation",
+        "nombre_contacto": "Sofía Martínez",
+        "direccion": "999 Calle de las Estrellas",
+        "telefono": "+81 3 5555-6666",
+        "celular": "+81 90 1234-5678",
+        "email": "sofia.martinez@zenithcorp.jp",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 6,
+        "nombre": "Quantum Innovations",
+        "nombre_contacto": "Laura Fernández",
+        "direccion": "2023 Avenida de la Ciencia",
+        "telefono": "+61 3 8888-9999",
+        "celular": "+61 4 1111-2222",
+        "email": "laura.fernandez@quantuminnovations.com.au",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 7,
+        "nombre": "DataTech Solutions",
+        "nombre_contacto": "Miguel García",
+        "direccion": "3031 Calle de los Datos",
+        "telefono": "+49 30 7777-6666",
+        "celular": "+49 176 5555-4444",
+        "email": "miguel.garcia@datatech.de",
+        "estado": "Inactivo"
+    },
+    {
+        "idProveedor": 8,
+        "nombre": "CyberSec Systems",
+        "nombre_contacto": "Ana Martínez",
+        "direccion": "4042 Avenida de la Seguridad",
+        "telefono": "+1 646 555-3333",
+        "celular": "+1 347 555-3333",
+        "email": "ana.martinez@cybersec.com",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 9,
+        "nombre": "CloudNine Hosting",
+        "nombre_contacto": "Pedro López",
+        "direccion": "5053 Calle de las Nubes",
+        "telefono": "+82 2 6666-5555",
+        "celular": "+82 10 1234-5678",
+        "email": "pedro.lopez@cloudnine.co.kr",
+        "estado": "Inactivo"
+    },
+    {
+        "idProveedor": 10,
+        "nombre": "AI Solutions",
+        "nombre_contacto": "Sofía Hernández",
+        "direccion": "6064 Avenida de la Inteligencia",
+        "telefono": "+33 1 4444-3333",
+        "celular": "+33 6 1234-5678",
+        "email": "sofia.hernandez@aisolutions.fr",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 11,
+        "nombre": "GreenTech Solutions",
+        "nombre_contacto": "Javier Sánchez",
+        "direccion": "7075 Avenida del Medio Ambiente",
+        "telefono": "+39 02 5555-4444",
+        "celular": "+39 333 1234-5678",
+        "email": "javier.sanchez@greentech.it",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 12,
+        "nombre": "BioTech Research",
+        "nombre_contacto": "Laura Pérez",
+        "direccion": "8086 Calle de la Biotecnología",
+        "telefono": "+46 8 5555-3333",
+        "celular": "+46 70 1234-5678",
+        "email": "laura.perez@biotechresearch.se",
+        "estado": "Inactivo"
+    },
+    {
+        "idProveedor": 13,
+        "nombre": "NanoTech Industries",
+        "nombre_contacto": "Miguel López",
+        "direccion": "9097 Avenida de la Nanotecnología",
+        "telefono": "+65 65 5555-2222",
+        "celular": "+65 9876 5432",
+        "email": "miguel.lopez@nanotech.sg",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 14,
+        "nombre": "AeroTech Aviation",
+        "nombre_contacto": "Ana García",
+        "direccion": "10108 Calle de la Aviación",
+        "telefono": "+1 310 555-1111",
+        "celular": "+1 424 555-1111",
+        "email": "ana.garcia@aerotech.com",
+        "estado": "Inactivo"
+    },
+    {
+        "idProveedor": 15,
+        "nombre": "SpaceTech Exploration",
+        "nombre_contacto": "Pedro Martínez",
+        "direccion": "11119 Avenida del Espacio",
+        "telefono": "+7 495 555-0000",
+        "celular": "+7 916 1234-5678",
+        "email": "pedro.martinez@spacetech.ru",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 16,
+        "nombre": "RoboTech Automation",
+        "nombre_contacto": "Sofía López",
+        "direccion": "12120 Avenida de la Robótica",
+        "telefono": "+82 51 5555-1111",
+        "celular": "+82 10 9876-5432",
+        "email": "sofia.lopez@robotech.co.kr",
+        "estado": "Inactivo"
+    },
+    {
+        "idProveedor": 17,
+        "nombre": "VR Solutions",
+        "nombre_contacto": "Javier García",
+        "direccion": "13131 Calle de la Realidad Virtual",
+        "telefono": "+91 22 5555-0000",
+        "celular": "+91 98765 43210",
+        "email": "javier.garcia@vrsolutions.in",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 18,
+        "nombre": "Metaverse Innovations",
+        "nombre_contacto": "Laura Martínez",
+        "direccion": "14142 Avenida del Metaverso",
+        "telefono": "+1 415 555-9999",
+        "celular": "+1 650 555-9999",
+        "email": "laura.martinez@metaverse.com",
+        "estado": "Inactivo"
+    },
+    {
+        "idProveedor": 19,
+        "nombre": "Quantum Computing",
+        "nombre_contacto": "Miguel Sánchez",
+        "direccion": "15153 Calle de los Quantum",
+        "telefono": "+43 1 5555-8888",
+        "celular": "+43 676 1234-5678",
+        "email": "miguel.sanchez@quantumcomputing.at",
+        "estado": "Activo"
+    },
+    {
+        "idProveedor": 20,
+        "nombre": "BioTech Pharma",
+        "nombre_contacto": "Ana López",
+        "direccion": "16164 Avenida de la Farmacia",
+        "telefono": "+56 2 5555-7777",
+        "celular": "+56 9 9876-5432",
+        "email": "ana.lopez@biotechpharma.cl",
+        "estado": "Inactivo"
+    }
+]
