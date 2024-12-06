@@ -13,14 +13,13 @@ export const Producto=sequelize.define(
             type:DataTypes.STRING,
             allowNull:false,
         },
-        precio_unitario:{
-            type:DataTypes.DOUBLE,
+        descripcion:{
+            type:DataTypes.TEXT,
             allowNull:false,
         },
-        estado:{
-            type:DataTypes.BOOLEAN,
+        stock:{
+            type:DataTypes.INTEGER,
             allowNull:false,
-            defaultValue:true,
         }
     },
     {
