@@ -1,7 +1,7 @@
 import { Categoria } from "../models/Categoria.js";
 import { Producto } from "../models/Producto.js";
 
-export async function getAllCategorias( req, res){
+export async function listarCategorias( req, res){
     try{
         const categorias=await Categoria.findAll({
             attributes:['id','nombre','usuario_id'],
@@ -14,7 +14,7 @@ export async function getAllCategorias( req, res){
     }
 }
 
-export async function createCategoria(req, res){
+export async function crearCategoria(req, res){
     const {nombre,usuario_id} = req.body;
     try{
         const newCategoria=await Categoria.create({
@@ -32,7 +32,7 @@ export async function createCategoria(req, res){
     }
 }
 
-export async function getCategoria(req, res){
+export async function verCategoria(req, res){
     const {id}=req.params;
     try{
         const categoria= await Categoria.findOne({
@@ -46,7 +46,7 @@ export async function getCategoria(req, res){
     }
 }
 
-export async function updateCategoria(req, res){
+export async function actualizarCategoria(req, res){
     const {id}=req.params;
     const {nombre, usuario_id} = req.body;
 
@@ -65,21 +65,3 @@ export async function updateCategoria(req, res){
     }
 }
 
-export async function deleteCategoria(req,res){
-    const {id}=req.params;
-    try {
-        await Producto.destroy({
-            where: { categoria_id: id },
-          }); 
-
- 
-        await Categoria.destroy({
-          where: { id },
-        });
-        return res.sendStatus(204);
-      } catch (error) {
-        res.status(500).json({
-          message: error.message,
-        });
-      }
-}
