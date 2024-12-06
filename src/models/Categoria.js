@@ -13,6 +13,10 @@ export const Categoria=sequelize.define(
         nombre:{
             type:DataTypes.STRING,
             allowNull:false,
+        },
+        descripcion:{
+            type:DataTypes.TEXT,
+            allowNull:false,
         }
     },
     {
