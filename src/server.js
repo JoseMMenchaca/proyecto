@@ -1,10 +1,11 @@
-import express from 'express';   // Asegúrate de que 'express' esté correctamente importado
-import morgan from 'morgan';     // Asegúrate de que 'morgan' esté correctamente importado
-import { sequelize } from './database/db.js';  // Importar tu configuración de Sequelize
-import indexRoutes from './routes/index.js';  // Asegúrate de importar las rutas correctamente
-import categoriaRoutes from './routes/categoria.routes.js'; // Otras rutas si las tienes
+import express from 'express';
+import morgan from 'morgan';
+import { sequelize } from './database/db.js';
+import indexRoutes from './routes/index.js';
+import categoriaRoutes from './routes/categoria.routes.js';
 import clienteRoutes from './routes/cliente.router.js';
-import './models/cliente.model.js';
+import './models/cliente.model.js'
+import proveedorRoutes from './routes/proveedor.routes.js';
 
 // Crear la instancia de la aplicación
 const app = express();
@@ -20,31 +21,21 @@ app.use(express.json());
 app.use(indexRoutes);  // Usar rutas
 app.use('/api/categoria', categoriaRoutes);  // Rutas de categorías
 app.use('/api', clienteRoutes);
-
-// Probar la conexión a la base de datos
-// (async () => {
-//     try {
-//         await sequelize.authenticate();
-//         console.log('Conexión exitosa a la base de datos MySQL');
-//     } catch (error) {
-//         console.error('Error al conectar a la base de datos:', error.message);
-//         process.exit(1);  // Si no puede conectar, termina el proceso
-//     }
-// })();
+app.use('/api/proveedor', proveedorRoutes)
 
 // Iniciar el servidor
 
-async() => {
+sequelize.sync() 
     try {
         await sequelize.sync()
         app.listen(4000);
-        console.log('Conexión exitosa a la base de datos MySQL', 4000);
+        console.log('Conexión exitosa a la base de datos MySQL', 3306);
     } catch (error) {
         console.error('Error al conectar a la base de datos', error);
     }
-}
 
-sequelize.sync() // Esto eliminará y recreará las tablas
+
+sequelize.sync({ alter: true }) // Esto eliminará y recreará las tablas
     .then(() => {
         console.log("Tablas sincronizadas");
     })

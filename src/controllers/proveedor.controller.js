@@ -1,4 +1,4 @@
-import { Proveedor } from "../models/Proveedor";
+import { Proveedor } from "../models/Proveedor.js";
 
 // Función registrar nuevo proveedor
 export async function registrarProveedor(req, res) {
@@ -74,6 +74,8 @@ export async function editarProveedor(req, res) {
 
     res.json(proveedor);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+       message: error.message, 
+    });
   }
 }

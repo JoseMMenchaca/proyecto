@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import {
   registrarProveedor,
   buscarProveedor,
@@ -12,3 +13,4 @@ router.get("/:id", buscarProveedor);
 router.put("/:id", editarProveedor);
 
 export default router;
+

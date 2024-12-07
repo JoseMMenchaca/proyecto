@@ -3,8 +3,6 @@ const clienteRoutes = express.Router();
 
 import Clientes from '../models/cliente.model.js';
 
-
-
 //MOSTRAR TODOS LISTA DE CLIENTES
 clienteRoutes.get("/clientes", async (req, res) => {
     const clientes = await Clientes.findAll()
