@@ -1,11 +1,10 @@
 import { Router } from "express";
-import { listarCategorias,crearCategoria, verCategoria,actualizarCategoria } from "../controllers/categoria.controller.js";
-const router =Router();
+import { listarCategorias, crearCategoria, verCategoria, actualizarCategoria } from "../controllers/categoria.controller.js";
+const router = Router();
 
-router.get('/',listarCategorias);
-router.post('/',crearCategoria);
+router.get('/', listarCategorias);
+router.post('/', crearCategoria);
 router.get('/:id', verCategoria);
-router.put('/:id',actualizarCategoria);
+router.put('/:id', actualizarCategoria);
 
-
-export default router;
+export default router;  // Exportar el router como default
