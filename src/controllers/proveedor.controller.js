@@ -75,7 +75,18 @@ export async function editarProveedor(req, res) {
     res.json(proveedor);
   } catch (error) {
     res.status(500).json({
-       message: error.message, 
+      message: error.message,
+    });
+  }
+}
+
+export async function listarProveedor(req, res) {
+  try {
+    const proveedores = await Proveedor.findAll();
+    res.json(proveedores);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
     });
   }
 }
