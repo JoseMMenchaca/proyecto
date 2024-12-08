@@ -4,6 +4,7 @@ import {
   registrarProveedor,
   buscarProveedor,
   editarProveedor,
+  listarProveedor,
 } from "../controllers/proveedor.controller.js";
 const router = Router();
 
@@ -11,6 +12,6 @@ const router = Router();
 router.post("/", registrarProveedor);
 router.get("/:id", buscarProveedor);
 router.put("/:id", editarProveedor);
+router.get("/", listarProveedor);
 
 export default router;
-
