@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/db.js';
 
-const Cliente = sequelize.define(
-'clientes', 
+export const Cliente = sequelize.define(
+    'clientes', 
     {
     cliente_id: {
         type: DataTypes.INTEGER,
@@ -39,14 +39,3 @@ const Cliente = sequelize.define(
 });
 
 export default Cliente;
-
-// async function tsConexion() {
-//     try {
-//         await sequelize.authenticate();
-//         console.log("Conectado a la Base de Datos...");
-//       } catch (error) {
-//         console.error("La conexion fallo", error);
-//       }
-// }
-
-// tsConexion();

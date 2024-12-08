@@ -3,8 +3,7 @@ import morgan from 'morgan';
 import { sequelize } from './database/db.js';
 import indexRoutes from './routes/index.js';
 import categoriaRoutes from './routes/categoria.routes.js';
-import clienteRoutes from './routes/cliente.router.js';
-import './models/cliente.model.js'
+import clienteRoutes from './routes/cliente.routes.js';
 import proveedorRoutes from './routes/proveedor.routes.js';
 
 // Crear la instancia de la aplicación
@@ -21,9 +20,7 @@ app.use(express.json());
 app.use(indexRoutes);  // Usar rutas
 app.use('/api/categoria', categoriaRoutes);  // Rutas de categorías
 app.use('/api', clienteRoutes);
-app.use('/api/proveedor', proveedorRoutes)
-
-// Iniciar el servidor
+app.use('/api/proveedores', proveedorRoutes);
 
 sequelize.sync() 
     try {
@@ -35,7 +32,7 @@ sequelize.sync()
     }
 
 
-sequelize.sync({ alter: true }) // Esto eliminará y recreará las tablas
+sequelize.sync({ alter: true })
     .then(() => {
         console.log("Tablas sincronizadas");
     })
