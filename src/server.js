@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import { sequelize } from './database/db.js';
+//rutas
 import indexRoutes from './routes/index.js';
 import categoriaRoutes from './routes/categoria.routes.js';
 import clienteRoutes from './routes/cliente.routes.js';
