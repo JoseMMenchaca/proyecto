@@ -1,5 +1,6 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, ForeignKeyConstraintError } from 'sequelize';
 import { sequelize } from '../database/db.js';
+import { Venta } from './venta.model.js'
 
 export const Cliente = sequelize.define(
     'clientes', 
@@ -38,4 +39,13 @@ export const Cliente = sequelize.define(
     tableName: 'clientes',
 });
 
+Cliente.hasMany(Venta, {
+    foreignKey: 'clienteId',
+    sourceKey: 'cliente_id'
+});
+
+Venta.belongsTo(Cliente, {
+    foreignKey: 'clienteId',
+    targetId: 'cliente_id'
+})
 export default Cliente;
