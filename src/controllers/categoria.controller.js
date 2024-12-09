@@ -1,11 +1,8 @@
 import { Categoria } from "../models/Categoria.js";
-import { Producto } from "../models/Producto.js";
 
 export async function listarCategorias( req, res){
     try{
-        const categorias=await Categoria.findAll({
-            attributes:['id','nombre','usuario_id'],
-        });
+        const categorias=await Categoria.findAll();
         res.json(categorias);
     }catch(error){
         res.status(500).json({
@@ -15,14 +12,14 @@ export async function listarCategorias( req, res){
 }
 
 export async function crearCategoria(req, res){
-    const {nombre,usuario_id} = req.body;
+    const {nombre,descripcion} = req.body;
     try{
         const newCategoria=await Categoria.create({
             nombre,
-            usuario_id,
+            descripcion,
             
         },{
-            fields:['nombre','usuario_id']
+            fields:['nombre','descripcion']
         });
         res.status(201).json(newCategoria);
     }catch(error){
@@ -48,12 +45,12 @@ export async function verCategoria(req, res){
 
 export async function actualizarCategoria(req, res){
     const {id}=req.params;
-    const {nombre, usuario_id} = req.body;
+    const {nombre, descripcion} = req.body;
 
     try{
         const categoria=await Categoria.findByPk(id);
         categoria.nombre=nombre;
-        categoria.usuario_id=usuario_id;
+        categoria.descripcion=descripcion;
 
         await categoria.save();
         
