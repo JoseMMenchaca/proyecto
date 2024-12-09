@@ -5,10 +5,9 @@ import indexRoutes from "./routes/index.js";
 import categoriaRoutes from "./routes/categoria.routes.js";
 import clienteRoutes from "./routes/cliente.routes.js";
 import proveedorRoutes from "./routes/proveedor.routes.js";
-
-import ingresosRoutes from "./routes/ingresos.routes.js";
-
 import "./models/cliente.model.js";
+import ventaRoutes from "./routes/venta.routes.js";
+import "./models/venta.model.js";
 // Crear la instancia de la aplicación
 const app = express();
 // Configuraciones
@@ -22,6 +21,7 @@ app.use(express.json());
 app.use(indexRoutes); // Usar rutas
 app.use("/api/categoria", categoriaRoutes); // Rutas de categorías
 app.use("/api", clienteRoutes);
+app.use("/api", ventaRoutes);
 app.use("/api/proveedor", proveedorRoutes);
 
 app.use("/api/ingresos", ingresosRoutes); // Rutas de ingresos
