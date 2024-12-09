@@ -8,6 +8,10 @@ import proveedorRoutes from "./routes/proveedor.routes.js";
 import "./models/cliente.model.js";
 import ventaRoutes from "./routes/venta.routes.js";
 import "./models/venta.model.js";
+
+import "./models/Ingresos.js";
+import ingresosRoutes from "./routes/ingresos.routes.js";
+
 // Crear la instancia de la aplicación
 const app = express();
 // Configuraciones
