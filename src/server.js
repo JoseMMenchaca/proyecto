@@ -3,6 +3,7 @@ import morgan from "morgan";
 import { sequelize } from "./database/db.js";
 import indexRoutes from "./routes/index.js";
 import categoriaRoutes from "./routes/categoria.routes.js";
+import productoRoutes from "./routes/producto.routes.js";
 import clienteRoutes from "./routes/cliente.routes.js";
 import proveedorRoutes from "./routes/proveedor.routes.js";
 import "./models/cliente.model.js";
@@ -24,6 +25,7 @@ app.use(express.json());
 
 app.use(indexRoutes); // Usar rutas
 app.use("/api/categoria", categoriaRoutes); // Rutas de categorías
+app.use("/api/productos", productoRoutes);  //rutas productos
 app.use("/api", clienteRoutes);
 app.use("/api", ventaRoutes);
 app.use("/api/proveedor", proveedorRoutes);
