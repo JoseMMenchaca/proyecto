@@ -1,10 +1,13 @@
-import express from 'express';
-import morgan from 'morgan';
-import { sequelize } from './database/db.js';
-import indexRoutes from './routes/index.js';
-import categoriaRoutes from './routes/categoria.routes.js';
-import clienteRoutes from './routes/cliente.routes.js';
-import proveedorRoutes from './routes/proveedor.routes.js';
+import express from "express";
+import morgan from "morgan";
+import { sequelize } from "./database/db.js";
+import indexRoutes from "./routes/index.js";
+import categoriaRoutes from "./routes/categoria.routes.js";
+import clienteRoutes from "./routes/cliente.routes.js";
+import proveedorRoutes from "./routes/proveedor.routes.js";
+
+import ingresosRoutes from "./routes/ingresos.routes.js";
+
 import "./models/cliente.model.js";
 // Crear la instancia de la aplicación
 const app = express();
@@ -20,6 +23,8 @@ app.use(indexRoutes); // Usar rutas
 app.use("/api/categoria", categoriaRoutes); // Rutas de categorías
 app.use("/api", clienteRoutes);
 app.use("/api/proveedor", proveedorRoutes);
+
+app.use("/api/ingresos", ingresosRoutes); // Rutas de ingresos
 
 // Iniciar el servidor
 
@@ -41,6 +46,6 @@ sequelize
     console.error("Error al sincronizar las tablas:", error);
   });
 
-app.listen(app.get('port'), () => {
-    console.log(`Servidor corriendo en el puerto ${app.get('port')}`);
-    });
+app.listen(app.get("port"), () => {
+  console.log(`Servidor corriendo en el puerto ${app.get("port")}`);
+});
