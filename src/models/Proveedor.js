@@ -1,10 +1,11 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
+import { Ingreso } from "./Ingresos.js";
 
 export const Proveedor = sequelize.define(
   "proveedores",
   {
-    idProveedor: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -45,3 +46,12 @@ export const Proveedor = sequelize.define(
     timestamps: false,
   }
 );
+
+Proveedor.hasMany(Ingreso, {
+  foreignKey:'proveedor_id',
+  sourceKey:'id',
+});
+Ingreso.belongsTo(Proveedor,{
+  foreignKey:'proveedor_id',
+  targetKey:'id',
+});
