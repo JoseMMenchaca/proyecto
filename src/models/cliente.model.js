@@ -5,7 +5,7 @@ import { Venta } from './venta.model.js'
 export const Cliente = sequelize.define(
     'clientes', 
     {
-    cliente_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -40,12 +40,12 @@ export const Cliente = sequelize.define(
 });
 
 Cliente.hasMany(Venta, {
-    foreignKey: 'clienteId',
-    sourceKey: 'cliente_id'
+    foreignKey: 'cliente_id',
+    sourceKey: 'id'
 });
 
 Venta.belongsTo(Cliente, {
-    foreignKey: 'clienteId',
-    targetId: 'cliente_id'
+    foreignKey: 'cliente_id',
+    targetId: 'id'
 })
 export default Cliente;
