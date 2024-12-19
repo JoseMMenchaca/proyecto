@@ -48,10 +48,10 @@ export const createCliente = async (req, res) => {
 }
 
 export const getCliente = async (req, res) => {
-    const {cliente_id} = req.params
+    const {id} = req.params
        try{
            const cliente = await Cliente.findOne({
-               where: {cliente_id},
+               where: {id},
            });
            res.status(200).json({
                message: "Registro Encontrado",
@@ -67,10 +67,10 @@ export const getCliente = async (req, res) => {
 
 //actualizar registro
 export const updateCliente = async (req, res) => {
-    const {cliente_id} = req.params
+    const {id} = req.params
     try{
         const cliente = await Cliente.findOne({
-            where: {cliente_id},
+            where: {id},
         });
         cliente.set(req.body);
         await cliente.save();
@@ -90,10 +90,10 @@ export const updateCliente = async (req, res) => {
 //mostrar compras de un cliente
 //api/clientes/16/ventas
 export const getClienteCompras = async (req, res) => {
-    const {cliente_id} = req.params
+    const {id} = req.params
     try{
         const ventas = await Venta.findAll({
-            where: {clienteId: cliente_id},
+            where: {id: id},
         });      
         res.status(200).json({
             message: "Ventas del cliente",
