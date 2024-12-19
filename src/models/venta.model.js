@@ -30,6 +30,8 @@ export const Venta = sequelize.define(
     tableName: 'ventas',
 });
 
+
+
 export default Venta;
 // Registro de Ventas:
 // ▪ Fecha y hora de la venta
