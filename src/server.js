@@ -6,12 +6,10 @@ import categoriaRoutes from "./routes/categoria.routes.js";
 import productoRoutes from "./routes/producto.routes.js";
 import clienteRoutes from "./routes/cliente.routes.js";
 import proveedorRoutes from "./routes/proveedor.routes.js";
-import "./models/cliente.model.js";
 import ventaRoutes from "./routes/venta.routes.js";
-import "./models/venta.model.js";
-
-import "./models/Ingresos.js";
 import ingresosRoutes from "./routes/ingresos.routes.js";
+import usuarioRoutes from "./routes/usuario.routes.js";
+import empleadoRoutes from "./routes/empleado.routes.js"
 
 // Crear la instancia de la aplicación
 const app = express();
@@ -29,14 +27,13 @@ app.use("/api/productos", productoRoutes);  //rutas productos
 app.use("/api", clienteRoutes);
 app.use("/api", ventaRoutes);
 app.use("/api/proveedor", proveedorRoutes);
-
 app.use("/api/ingresos", ingresosRoutes); // Rutas de ingresos
+app.use("/api/usuarios", usuarioRoutes); // Rutas de ingresos
 
 // Iniciar el servidor
 
-sequelize.sync();
 try {
-  await sequelize.sync();
+
   app.listen(4000);
   console.log("Conexión exitosa a la base de datos MySQL", 3306);
 } catch (error) {
