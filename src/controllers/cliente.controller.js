@@ -1,5 +1,5 @@
-import { Cliente } from "../models/cliente.model.js"
-import { Venta } from "../models/venta.model.js"
+import { Cliente } from "../models/Cliente.js"
+import { Venta } from "../models/Ventas.js"
 
 //listar registros
 export const getClientes = async (req, res) => {
