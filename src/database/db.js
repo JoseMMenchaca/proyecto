@@ -12,6 +12,6 @@ export const sequelize = new Sequelize(
     {
         host: process.env.HOST,    // Host (generalmente localhost)
         dialect: "mysql",          // Tipo de base de datos
-        logging: false,            // Desactiva los logs de las consultas
+        logging: true,            // Desactiva los logs de las consultas
     }
 );
