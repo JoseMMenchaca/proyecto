@@ -1,4 +1,4 @@
-import {DataTypes} from "sequelize"
+import {DataTypes} from "sequelize";
 import { sequelize } from "../database/db.js";
 
 export const IngresoDetalle = sequelize.define(
