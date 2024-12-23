@@ -1,7 +1,6 @@
-import { DataTypes} from 'sequelize';
+import { DataTypes } from "sequelize"
 import { sequelize } from "../database/db.js";
-import { Venta } from "./venta.model.js";
-
+import { Venta } from "./Ventas.js";
 
 export const Empleado=sequelize.define(
     'empleados',
@@ -17,24 +16,24 @@ export const Empleado=sequelize.define(
         },
         direccion:{
             type:DataTypes.STRING,
-            allowNull:true,
+            allowNull:false,
         },
         telefono:{
             type:DataTypes.STRING,
-            allowNull:true,
+            allowNull:false,
         },
         celular:{
             type:DataTypes.STRING,
-            allowNull:true,
+            allowNull:false,
         },
         email:{
             type:DataTypes.STRING,
-            allowNull:true,
+            allowNull:false,
         },
         estado:{
             type:DataTypes.BOOLEAN,
-            defaultValue:true
-        }
+            defaultValue:true,
+        },
     },
     {
       timestamps: false,
@@ -49,3 +48,4 @@ Venta.belongsTo(Empleado,{
     foreignKey:'empleado_id',
     targetKey:'id',
 });
+ 
