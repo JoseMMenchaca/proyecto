@@ -41,7 +41,7 @@ export async function verUnidad(req, res){
     }
 }
 
-export async function actualizarCategoria(req, res){
+export async function actualizarUnidad(req, res){
     const {id}=req.params;
     const {nombre} = req.body;
 
