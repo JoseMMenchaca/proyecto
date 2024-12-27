@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { listarCategorias, crearCategoria, verCategoria, actualizarCategoria } from "../controllers/categoria.controller.js";
+import { listarUnidades, crearUnidad, verUnidad, actualizarUnidad } from "../controllers/unidad.controller.js";
 const router = Router();
 
-router.get('/', listarCategorias);
-router.post('/', crearCategoria);
-router.get('/:id', verCategoria);
-router.put('/:id', actualizarCategoria);
+router.get('/', listarUnidades);
+router.post('/', crearUnidad);
+router.get('/:id', verUnidad);
+router.put('/:id', actualizarUnidad);
 
 export default router;  // Exportar el router como default
