@@ -29,10 +29,6 @@ export const IngresoDetalle = sequelize.define(
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      fechaIngreso: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
     },
     {
       timestamps: false,
