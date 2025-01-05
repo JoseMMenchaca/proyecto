@@ -1,4 +1,5 @@
 import { Venta } from "../models/Ventas.js"
+import { VentaDetalle } from "../models/VentaDetalles.js"
 
 //crear registro
 export const createVenta = async (req, res) => {
