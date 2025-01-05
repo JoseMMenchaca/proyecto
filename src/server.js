@@ -2,6 +2,8 @@ import express from "express";
 import morgan from "morgan";
 import { sequelize } from "./database/db.js";
 import indexRoutes from "./routes/index.js";
+
+
 import categoriaRoutes from "./routes/categoria.routes.js";
 import productoRoutes from "./routes/producto.routes.js";
 import clienteRoutes from "./routes/cliente.routes.js";
@@ -10,6 +12,10 @@ import ventaRoutes from "./routes/venta.routes.js";
 import ingresosRoutes from "./routes/ingresos.routes.js";
 import usuarioRoutes from "./routes/usuario.routes.js";
 import empleadoRoutes from "./routes/empleado.routes.js"
+import unidadRoutes from "./routes/unidad.routes.js"
+
+
+import bcrypt from "bcrypt";
 
 // Crear la instancia de la aplicación
 const app = express();
@@ -29,8 +35,10 @@ app.use("/api", ventaRoutes);
 app.use("/api/proveedor", proveedorRoutes);
 app.use("/api/ingresos", ingresosRoutes); // Rutas de ingresos
 app.use("/api/usuarios", usuarioRoutes); // Rutas de ingresos
-
+app.use("/api/unidades", unidadRoutes); // Rutas de ingresos
 // Iniciar el servidor
+
+
 
 try {
 
@@ -48,6 +56,30 @@ sequelize
   .catch((error) => {
     console.error("Error al sincronizar las tablas:", error);
   });
+
+  function verifyToken(req, res, next) {
+    const bearerHeader=req.headers['authorization'];
+    if (typeof bearerHeader!=='undefined') {
+
+        const token =bearerHeader.split(' ')[1];
+        jwt.verify(token, 'secretkey', function(err, usuario) {
+            if (err) {
+                return res.status(401).send({
+                    success: false,
+                    message: 'Haga login para continuar'
+                });
+            } else {
+
+                next();
+            }
+        });
+    } else {
+        return res.status(401).send({
+            success: false,
+            message: 'Haga login para continuar'
+        });
+    }
+}
 
 app.listen(app.get("port"), () => {
   console.log(`Servidor corriendo en el puerto ${app.get("port")}`);
