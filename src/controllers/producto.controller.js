@@ -1,4 +1,5 @@
 import { Producto } from "../models/Producto.js";
+import { IngresoDetalle } from "../models/IngresoDetalles.js";
 
 export async function listarProductos( req, res){
     try{
@@ -67,3 +68,22 @@ export async function actualizarProducto(req, res){
     }
 }
 
+export async function verPrecioProducto(req, res){
+    const {id}=req.params;
+    try{
+        const producto= await Producto.findOne({
+            where:{id},
+            include:{
+                model: IngresoDetalle,
+                attributes: ['precioVenta'] // Solo obtener el campo 'titulo' de los posts
+              }
+        }
+    );
+   
+        res.status(201).json(producto);
+    }catch(error){
+        res.status(500).json({
+            message:error.message,
+        });
+    }
+}
