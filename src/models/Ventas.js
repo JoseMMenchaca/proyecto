@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/db.js';
-
+import { VentaDetalle } from './VentaDetalles.js';
 export const Venta = sequelize.define(
     'ventas', 
     {
@@ -29,5 +29,12 @@ export const Venta = sequelize.define(
     timestamps: false,
 });
 
-
+Venta.hasMany(VentaDetalle, {
+    foreignKey:'venta_id',
+    sourceKey:'id',
+  });
+  VentaDetalle.belongsTo(Venta,{
+    foreignKey:'venta_id',
+    targetKey:'id',
+  });
 
