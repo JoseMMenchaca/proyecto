@@ -1,8 +1,7 @@
-import express from "express";
+import express from "express"; 
 import morgan from "morgan";
 import { sequelize } from "./database/db.js";
 import indexRoutes from "./routes/index.js";
-
 
 import categoriaRoutes from "./routes/categoria.routes.js";
 import productoRoutes from "./routes/producto.routes.js";
@@ -19,6 +18,7 @@ import bcrypt from "bcrypt";
 
 // Crear la instancia de la aplicación
 const app = express();
+
 // Configuraciones
 app.set("port", process.env.PORT || 3000); // Define el puerto para el servidor
 
@@ -27,9 +27,27 @@ app.use(morgan("dev")); // Para logging de las solicitudes
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(indexRoutes); // Usar rutas
+// Definir __dirname para ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Configuración de multer para subir archivos
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, "../uploads"), // Carpeta 'uploads' en la raíz del proyecto
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`); // Nombre único para cada archivo
+  },
+});
+
+const upload = multer({ storage });
+
+// Servir la carpeta 'uploads' como estática
+app.use("/uploads", express.static(path.join(__dirname, "../uploads"))); // Acceder a archivos subidos
+
+// Usar rutas
+app.use(indexRoutes); 
 app.use("/api/categoria", categoriaRoutes); // Rutas de categorías
-app.use("/api/productos", productoRoutes);  //rutas productos
+app.use("/api/productos", productoRoutes);  // Rutas productos
 app.use("/api", clienteRoutes);
 app.use("/api", ventaRoutes);
 app.use("/api/proveedor", proveedorRoutes);
@@ -41,13 +59,14 @@ app.use("/api/unidades", unidadRoutes); // Rutas de ingresos
 
 
 try {
-
-  app.listen(4000);
-  console.log("Conexión exitosa a la base de datos MySQL", 3306);
+  app.listen(app.get("port"), () => {
+    console.log(`Servidor corriendo en el puerto ${app.get("port")}`);
+  });
 } catch (error) {
-  console.error("Error al conectar a la base de datos", error);
+  console.error("Error al conectar al servidor", error);
 }
 
+// Sincronizar la base de datos
 sequelize
   .sync({ alter: true }) // Esto eliminará y recreará las tablas
   .then(() => {
