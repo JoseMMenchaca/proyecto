@@ -2,7 +2,9 @@ import express from "express";
 import morgan from "morgan";
 import { sequelize } from "./database/db.js";
 import indexRoutes from "./routes/index.js";
-
+import multer from "multer"; // Importar multer
+import path from "path"; // Importar path
+import { fileURLToPath } from "url";
 import categoriaRoutes from "./routes/categoria.routes.js";
 import productoRoutes from "./routes/producto.routes.js";
 import clienteRoutes from "./routes/cliente.routes.js";
