@@ -14,7 +14,7 @@ router.get('/', listarProductos);
 // Ruta para ver un producto por su ID
 router.get('/:id', verProducto);
 router.get('/precio/:id', verPrecioProducto);
-router.put('/:id',actualizarProducto);
+router.put('/:id',editarProducto);
 
 // Ruta para editar un producto por su ID (incluyendo la imagen)
 router.put('/:id', upload.single("imagen"), editarProducto); // Se incluye upload.single("imagen") si deseas permitir la actualización de la imagen
