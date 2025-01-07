@@ -17,7 +17,7 @@ export async function registrarIngreso(req, res) {
     { transaction: t }
   );
 
-   // Crear el post asociado al usuario
+   // Crear productos asociados al ingreso 
    const Newdetalles = await IngresoDetalle.bulkCreate(
     detalles.map(detalle => ({
       producto_id: detalle.producto_id,
@@ -33,7 +33,7 @@ export async function registrarIngreso(req, res) {
   // Si ambos registros se crean correctamente, confirmamos la transacción
   await t.commit();
 
-    res.status(201).json({mensaje: 'Usuario y post creados correctamente',
+    res.status(201).json({mensaje: 'Ingreso Registrado correctamente',
       newIngreso,
       Newdetalles});
   } catch (error) {
