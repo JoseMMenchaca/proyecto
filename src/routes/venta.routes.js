@@ -8,8 +8,8 @@ const router = Router();
 
 router.get("/ventas", getVentas);
 router.post("/ventas", createVenta);
-router.put("/ventas/:venta_id", updateVenta);
+router.put("/ventas/:id", updateVenta);
 //mostrar un solo registro
-router.get("/ventas/:venta_id", getVenta);
+router.get("/ventas/:id", getVenta);
 
 export default router;
