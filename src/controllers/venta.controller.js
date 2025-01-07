@@ -47,17 +47,12 @@ export const getVentas = async (req, res) => {
 
 //mostrar un solo registro
 export const getVenta = async (req, res) => {
- const {venta_id} = req.params
+ const {id} = req.params
     try{
         const venta = await Venta.findOne({
-            where: {venta_id},
+            where: {id},
         });
-        res.status(200).json({
-            message: "Registro Encontrado",
-            ok: true,
-            status: 200,
-            body: venta,
-        });
+        res.status(200).json(venta);
     }
     catch(error){
         return res.status(500).json({message: error.messaje});
