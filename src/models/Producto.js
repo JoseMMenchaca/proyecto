@@ -1,8 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
 import { IngresoDetalle } from "./IngresoDetalles.js";
-import { Venta } from "./Ventas.js";
-
+import { VentaDetalle } from "./VentaDetalles.js";
 // Definir el modelo Producto sin la relación a Categoria por ahora
 export const Producto = sequelize.define(
   "productos",
@@ -45,11 +44,11 @@ Producto.hasMany(IngresoDetalle, {
     targetKey:'id',
   });
 // Relaciones con Ingreso y Venta
-Producto.hasMany(Venta, {
+Producto.hasMany(VentaDetalle, {
   foreignKey: "producto_id",
   sourceKey: "id",
 });
-Venta.belongsTo(Producto, {
+VentaDetalle.belongsTo(Producto, {
   foreignKey: "producto_id",
   targetKey: "id",
 });
