@@ -3,30 +3,43 @@ import { VentaDetalle } from "../models/VentaDetalles.js"
 
 //crear registro
 export const createVenta = async (req, res) => {
-    try{
-        const { clienteId,
-            monto,
-            metodoPago,
-            tipoVenta,
-            tipoEntrega
-        } = req.body
-
-        const crearVenta = await Venta.create({
-            clienteId,
-            monto,
-            metodoPago,
-            tipoVenta,
-            tipoEntrega
-        });
-        res.status(201).json({
-            ok: true,
-            status: 201,
-            message: "Venta Registrada",
-    });
-    }
-    catch(error){
-        return res.status(500).json({message: error.messaje});
-    }
+   const t = await sequelize.transaction();
+   
+     const { monto, metodoPago, tipoVenta, tipoEntrega,cliente_id,empleado_id, detalles } = req.body;
+   
+     try {
+       const nuevaVenta = await Venta.create({
+         monto,
+         metodoPago,
+         tipoVenta,
+         tipoEntrega,
+         cliente_id,
+         empleado_id   
+       },
+       { transaction: t }
+     );
+   
+      // Crear productos asociados a la venta
+      const Newdetalles = await VentaDetalle.bulkCreate(
+       detalles.map(detalle => ({
+         producto_id: detalle.producto_id,
+         venta_id: detalle.lote,
+         cantidad: detalle.cantidad,
+         precio: detalle.precio,
+         total: detalle.precioVenta,
+         venta_id: nuevaVenta.id // Asociamos cada venta por su ID
+       })),{ transaction: t }
+     );
+      
+     // Si ambos registros se crean correctamente, confirmamos la transacción
+     await t.commit();
+   
+       res.status(201).json({mensaje: 'Venta Registrada Correctamente',
+         nuevaVenta,
+         Newdetalles});
+     } catch (error) {
+       res.status(500).json({ message: error.message });
+     }
 }
 
 //listar registros
