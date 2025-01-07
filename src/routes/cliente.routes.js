@@ -9,10 +9,10 @@ const router = Router();
 
 router.get("/clientes", getClientes);
 router.post("/clientes", createCliente);
-router.put("/clientes/:cliente_id", updateCliente);
+router.put("/clientes/:id", updateCliente);
 //mostrar un solo registro
-router.get("/clientes/:cliente_id", getCliente);
+router.get("/clientes/:id", getCliente);
 //mostrar compras de un cliente
-router.get("/clientes/:cliente_id/ventas", getClienteCompras);
+router.get("/clientes/:id/ventas", getClienteCompras);
 
 export default router;
