@@ -1,11 +1,13 @@
 import { sequelize } from "../database/db.js";
 import { Ingreso } from "../models/Ingresos.js";
 import { IngresoDetalle } from "../models/IngresoDetalles.js";
+import { Producto } from "../models/Producto.js";
 
 // Función registrar nuevo ingreso
 export async function registrarIngreso(req, res) {
   const t = await sequelize.transaction();
-
+  let newDetalle;
+  let lote;
   const { fechaIngreso, montoTotal, proveedor_id, detalles } = req.body;
 
   try {
@@ -16,9 +18,24 @@ export async function registrarIngreso(req, res) {
     },
     { transaction: t }
   );
+  
+  for (const detalle of detalles) {
+    lote=await IngresoDetalle.count({
+                   where: {producto_id: detalle.producto_id},
+               });
 
+    newDetalle = await IngresoDetalle.create({
+      producto_id: detalle.producto_id,
+      lote: lote,
+      cantidad: detalle.cantidad,
+      precio: detalle.precio,
+      precioVenta: detalle.precioVenta,
+      saldoProducto: detalle.saldoProducto,
+      ingreso_id: newIngreso.id
+    },{ transaction: t });
+  }
    // Crear productos asociados al ingreso 
-   const Newdetalles = await IngresoDetalle.bulkCreate(
+   /* const Newdetalles = await IngresoDetalle.bulkCreate(
     detalles.map(detalle => ({
       producto_id: detalle.producto_id,
       lote: detalle.lote,
@@ -28,16 +45,15 @@ export async function registrarIngreso(req, res) {
       saldoProducto: detalle.saldoProducto,
       ingreso_id: newIngreso.id // Asociamos cada post al usuario por su ID
     })),{ transaction: t }
-  );
+  ); */
    
   // Si ambos registros se crean correctamente, confirmamos la transacción
   await t.commit();
 
     res.status(201).json({mensaje: 'Ingreso Registrado correctamente',
-      newIngreso,
-      Newdetalles});
+      newIngreso});
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message});
   }
 }
 
