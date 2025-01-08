@@ -13,6 +13,10 @@ export const Venta = sequelize.define(
         type: DataTypes.FLOAT(100, 2),
         allowNull: false,
     },
+    fechaVenta: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
     metodoPago: {
         type: DataTypes.STRING,
         allowNull: false,
