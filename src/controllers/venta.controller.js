@@ -47,12 +47,7 @@ export const createVenta = async (req, res) => {
 export const getVentas = async (req, res) => {
     try{
         const ventas = await Venta.findAll()
-        res.status(200).json({
-            message: "Lista de Ventas",
-            ok: true,
-            status: 200,
-            body: ventas,
-        });
+        res.status(200).json( ventas);
     }
     catch(error){
         return res.status(500).json({message: error.messaje});
