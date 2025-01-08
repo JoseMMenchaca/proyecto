@@ -13,7 +13,7 @@ export async function listarIngresos(req, res) {
       {
         model: Proveedor, // El modelo de la Proveedor
         as: "proveedor",
-        attributes: ["id", "nombre"], // Atributos que deseas incluir de la Proveedor
+        attributes: ["id", "nombre"], // Atributos que deseas incluir del Proveedor
       },
     ],
   });
@@ -52,7 +52,7 @@ export async function registrarIngreso(req, res) {
 
     newDetalle = await IngresoDetalle.create({
       producto_id: detalle.producto_id,
-      lote: lote,
+      lote: detalle.lote,
       cantidad: detalle.cantidad,
       precio: detalle.precio,
       precioVenta: detalle.precioVenta,
@@ -119,3 +119,29 @@ export async function actualizarSaldo(req, res) {
     res.status(500).json({ message: error.message });
   }
 }
+
+export async function obtenerDetalles(req, res) {
+  const { ingresoId } = req.params;
+
+  try {
+    const detalles = await IngresoDetalle.findAll({
+      where: { ingreso_id: ingresoId },
+      include: [
+        {
+          model: Producto,
+          as: "producto", // Asegúrate de definir esta relación en tu modelo
+          attributes: ["id", "nombre"],
+        },
+      ],
+    });
+
+    if (!detalles || detalles.length === 0) {
+      return res.status(404).json({ message: "No se encontraron detalles para este ingreso" });
+    }
+
+    res.json(detalles);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener detalles del ingreso", error: error.message });
+  }
+}
+
