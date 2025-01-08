@@ -5,12 +5,7 @@ import { Venta } from "../models/Ventas.js"
 export const getClientes = async (req, res) => {
     try{
         const clientes = await Cliente.findAll()
-        res.status(200).json({
-            message: "Lista de Clientes",
-            ok: true,
-            status: 200,
-            body: clientes,
-    });
+        res.status(200).json(clientes);
     }
     
     catch(error){
@@ -53,12 +48,7 @@ export const getCliente = async (req, res) => {
            const cliente = await Cliente.findOne({
                where: {id},
            });
-           res.status(200).json({
-               message: "Registro Encontrado",
-               ok: true,
-               status: 200,
-               body: cliente,
-           });
+           res.status(200).json( cliente);
        }
        catch(error){
             return res.status(500).json({message: error.messaje});
@@ -93,7 +83,7 @@ export const getClienteCompras = async (req, res) => {
     const {id} = req.params
     try{
         const ventas = await Venta.findAll({
-            where: {id: id},
+            where: {cliente_id: id},
         });      
         res.status(200).json({
             message: "Ventas del cliente",

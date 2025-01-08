@@ -3,7 +3,7 @@ import { Empleado } from "../models/Empleado.js"
 //listar registros
 export const listarEmpleados = async (req, res) => {
     try{
-        const clientes = await Cliente.findAll()
+        const clientes = await Empleado.findAll()
         res.status(200).json({
             message: "Lista de Clientes",
             ok: true,
@@ -21,24 +21,26 @@ export const listarEmpleados = async (req, res) => {
 export const crearEmpleado = async (req, res) => {
     try{
         const { nombre_cliente,
+            nombre,
             direccion,
+            telefono,
             celular,
             email,
             estado,
-            estadoCredito} = req.body
+            } = req.body
     
-        const crearCliente = await Cliente.create({
-            nombre_cliente,
+        const crearCliente = await Empleado.create({
+            nombre,
             direccion,
+            telefono,
             celular,
             email,
             estado,
-            estadoCredito
         });
         res.status(201).json({
             ok: true,
             status: 201,
-            message: "Cliente Regitrado",
+            message: "Empleado Regitrado",
         });
     }
     catch(error){
@@ -49,15 +51,10 @@ export const crearEmpleado = async (req, res) => {
 export const verEmpleado = async (req, res) => {
     const {id} = req.params
        try{
-           const cliente = await Cliente.findOne({
+           const empleado = await Empleado.findOne({
                where: {id},
            });
-           res.status(200).json({
-               message: "Registro Encontrado",
-               ok: true,
-               status: 200,
-               body: cliente,
-           });
+           res.status(200).json(empleado);
        }
        catch(error){
             return res.status(500).json({message: error.messaje});
@@ -68,18 +65,13 @@ export const verEmpleado = async (req, res) => {
 export const actualizarEmpleado = async (req, res) => {
     const {id} = req.params
     try{
-        const cliente = await Cliente.findOne({
+        const empleado = await Empleado.findOne({
             where: {id},
         });
-        cliente.set(req.body);
-        await cliente.save();
+        Empleado.set(req.body);
+        await empleado.save();
         
-        res.status(200).json({
-            message: "Registro Actualizado",
-            ok: true,
-            status: 200,
-            body: cliente,
-        });
+        res.status(200).json(cliente);
     }
     catch(error){
         return res.status(500).json({message: error.message});
