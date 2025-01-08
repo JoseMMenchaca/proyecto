@@ -50,8 +50,10 @@ export const Proveedor = sequelize.define(
 Proveedor.hasMany(Ingreso, {
   foreignKey:'proveedor_id',
   sourceKey:'id',
+  as: "ingresos",
 });
 Ingreso.belongsTo(Proveedor,{
   foreignKey:'proveedor_id',
   targetKey:'id',
+  as: "proveedor",
 });
