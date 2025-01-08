@@ -31,6 +31,7 @@ export async function registrarIngreso(req, res) {
 
   let newDetalle;
   let lote;
+  let producto, updateStock;
   const { fechaIngreso, proveedor_id, detalles} = req.body;
 
   // Calcular montoTotal basado en los detalles
@@ -49,7 +50,11 @@ export async function registrarIngreso(req, res) {
     lote=await IngresoDetalle.count({
                    where: {producto_id: detalle.producto_id},
                });
-
+    producto=await Producto.findOne({
+      where: {id:detalle.producto_id},
+  });
+    updateStock=await Producto.update({stock:parseInt(producto.stock)+parseInt(detalle.cantidad)},
+      {where: {id: detalle.producto_id}});
     newDetalle = await IngresoDetalle.create({
       producto_id: detalle.producto_id,
       lote: detalle.lote,
