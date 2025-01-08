@@ -1,3 +1,4 @@
+import { sequelize } from "../database/db.js";
 import { Venta } from "../models/Ventas.js"
 import { VentaDetalle } from "../models/VentaDetalles.js"
 
@@ -5,11 +6,12 @@ import { VentaDetalle } from "../models/VentaDetalles.js"
 export const createVenta = async (req, res) => {
    const t = await sequelize.transaction();
    
-     const { monto, metodoPago, tipoVenta, tipoEntrega,cliente_id,empleado_id, detalles } = req.body;
+     const { monto, fechaVenta,metodoPago, tipoVenta, tipoEntrega,cliente_id,empleado_id, detalles } = req.body;
    
      try {
        const nuevaVenta = await Venta.create({
          monto,
+         fechaVenta,
          metodoPago,
          tipoVenta,
          tipoEntrega,
@@ -23,10 +25,9 @@ export const createVenta = async (req, res) => {
       const Newdetalles = await VentaDetalle.bulkCreate(
        detalles.map(detalle => ({
          producto_id: detalle.producto_id,
-         venta_id: detalle.lote,
          cantidad: detalle.cantidad,
          precio: detalle.precio,
-         total: detalle.precioVenta,
+         total: detalle.total,
          venta_id: nuevaVenta.id // Asociamos cada venta por su ID
        })),{ transaction: t }
      );
