@@ -2,13 +2,39 @@ import { sequelize } from "../database/db.js";
 import { Ingreso } from "../models/Ingresos.js";
 import { IngresoDetalle } from "../models/IngresoDetalles.js";
 import { Producto } from "../models/Producto.js";
+import { Proveedor } from "../models/Proveedor.js"
+
+// Función listar todos los ingresos
+export async function listarIngresos(req, res) {
+  try {
+    const ingresos = await Ingreso.findAll({
+    
+      include: [
+      {
+        model: Proveedor, // El modelo de la Proveedor
+        as: "proveedor",
+        attributes: ["id", "nombre"], // Atributos que deseas incluir de la Proveedor
+      },
+    ],
+  });
+    res.json(ingresos);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
 
 // Función registrar nuevo ingreso
 export async function registrarIngreso(req, res) {
   const t = await sequelize.transaction();
+
   let newDetalle;
   let lote;
-  const { fechaIngreso, montoTotal, proveedor_id, detalles } = req.body;
+  const { fechaIngreso, proveedor_id, detalles} = req.body;
+
+  // Calcular montoTotal basado en los detalles
+  const montoTotal = detalles.reduce((acc, detalle) => acc + detalle.total, 0);
 
   try {
     const newIngreso = await Ingreso.create({
@@ -53,7 +79,9 @@ export async function registrarIngreso(req, res) {
     res.status(201).json({mensaje: 'Ingreso Registrado correctamente',
       newIngreso});
   } catch (error) {
-    res.status(500).json({ message: error.message});
+    await t.rollback();
+    console.error('Error al crear ingreso:', error);
+    res.status(500).json({ message: 'Error al guardar el ingreso', error: error.message });
   }
 }
 
@@ -87,16 +115,6 @@ export async function actualizarSaldo(req, res) {
     await ingreso.save();
 
     res.json(ingreso);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
-
-// Función listar todos los ingresos
-export async function listarIngresos(req, res) {
-  try {
-    const ingresos = await Ingreso.findAll();
-    res.json(ingresos);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
