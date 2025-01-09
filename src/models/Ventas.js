@@ -29,6 +29,11 @@ export const Venta = sequelize.define(
         type: DataTypes.STRING,
         allowNull:false,
     },
+    estadoEntrega: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull:false,
+    },
 }, {
     timestamps: false,
 });
