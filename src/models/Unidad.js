@@ -23,8 +23,10 @@ export const Unidad=sequelize.define(
 Unidad.hasMany(Producto, {
     foreignKey:'unidad_id',
     sourceKey:'id',
+    as: 'producto',
 });
 Producto.belongsTo(Unidad,{
     foreignKey:'unidad_id',
     targetKey:'id',
+    as: 'unidad'
 });
