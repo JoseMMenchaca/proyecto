@@ -2,6 +2,7 @@ import { Sequelize, Op} from "sequelize";
 import { Producto } from "../models/Producto.js";
 import { IngresoDetalle } from "../models/IngresoDetalles.js";
 import { Categoria } from "../models/Categoria.js";
+import { Unidad } from "../models/Unidad.js"
 
 
 // Listar todos los productos con sus categorías
@@ -15,6 +16,12 @@ export async function listarProductos(req, res) {
           as: "categoria",  // Alias de la relación definida en el modelo
           attributes: ["id", "nombre"], // Atributos que deseas incluir de la categoría
         },
+        {
+          model: Unidad,
+          as: "unidad",
+          attributes: ["id", "nombre"],
+        }
+        
       ],
     });
     res.json(productos);
@@ -27,8 +34,8 @@ export async function listarProductos(req, res) {
 
 
 export async function crearProducto(req, res) {
-  const { nombre, descripcion, stock, categoria_id } = req.body;
-  console.log("Datos recibidos:", { nombre, descripcion, stock, categoria_id });
+  const { nombre, descripcion, stock, categoria_id , unidad_id} = req.body;
+  console.log("Datos recibidos:", { nombre, descripcion, stock, categoria_id, unidad_id });
   console.log("Imagen recibida:", req.file);
 
   try {
@@ -36,6 +43,10 @@ export async function crearProducto(req, res) {
     const categoria = await Categoria.findByPk(categoria_id);
     if (!categoria) {
       return res.status(400).json({ message: "Categoría no encontrada" });
+    }
+    const unidad = await Unidad.findByPk(unidad_id);
+    if (!unidad) {
+      return res.status(400).json({ message: "Unidad no encontrada" });
     }
 
     // Obtener la ruta del archivo subido (si existe)
@@ -47,6 +58,7 @@ export async function crearProducto(req, res) {
       descripcion,
       stock,
       categoria_id,
+      unidad_id,
       imagen,
     });
 
@@ -78,7 +90,7 @@ export async function verProducto(req, res) {
 // Editar un producto por su ID
 export async function editarProducto(req, res) {
   const { id } = req.params;
-  const { nombre, descripcion, stock, categoria_id } = req.body;
+  const { nombre, descripcion, stock, categoria_id, unidad_id } = req.body;
 
   try {
     const producto = await Producto.findByPk(id);
@@ -95,6 +107,7 @@ export async function editarProducto(req, res) {
     producto.descripcion = descripcion;
     producto.stock = stock;
     producto.categoria_id = categoria_id;
+    producto.unidad_id = unidad_id;
     producto.imagen = imagen; // Actualizar la imagen
 
     await producto.save();
