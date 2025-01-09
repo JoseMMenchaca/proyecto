@@ -57,7 +57,7 @@ export async function registrarIngreso(req, res) {
       {where: {id: detalle.producto_id}});
     newDetalle = await IngresoDetalle.create({
       producto_id: detalle.producto_id,
-      lote: detalle.lote,
+      lote: lote,
       cantidad: detalle.cantidad,
       precio: detalle.precio,
       precioVenta: detalle.precioVenta,
