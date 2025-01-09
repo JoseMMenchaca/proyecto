@@ -1,3 +1,4 @@
+import { Sequelize, Op} from "sequelize";
 import { Producto } from "../models/Producto.js";
 import { IngresoDetalle } from "../models/IngresoDetalles.js";
 import { Categoria } from "../models/Categoria.js";
@@ -112,7 +113,10 @@ export async function verPrecioProducto(req, res){
             where:{id},
             include:{
                 model: IngresoDetalle,
-                attributes: ['precioVenta'] // Solo obtener el campo 'titulo' de los posts
+                attributes: ['precioVenta'],
+                where: {
+                  saldoProducto: { [Sequelize.Op.gt]:0 }, 
+                }, 
               }
         }
     );
