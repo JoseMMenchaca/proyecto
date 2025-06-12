@@ -19,7 +19,7 @@ export async function crearCategoria(req, res){
             descripcion,
             
         },{
-            fields:['nombre',{/*,'descripcion'*/}]
+            fields:['nombre','descripcion']
         });
         res.status(201).json(newCategoria);
     }catch(error){
@@ -45,13 +45,12 @@ export async function verCategoria(req, res){
 
 export async function actualizarCategoria(req, res){
     const {id}=req.params;
-    const {nombre} = req.body;
-    //const {nombre, descripcion} = req.body;
+    const {nombre, descripcion} = req.body;
 
     try{
         const categoria=await Categoria.findByPk(id);
         categoria.nombre=nombre;
-        //categoria.descripcion=descripcion;
+        categoria.descripcion=descripcion;
 
         await categoria.save();
         
