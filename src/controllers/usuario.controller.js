@@ -21,11 +21,12 @@ export async function createUser(req, res){
     const salt = await bcrypt.genSalt(10);
     try{
         const newUsuario=await Usuario.create({
-            nombre:nombre,
-            correo:correo,
+            username:nombre,
+            email:correo,
             contrasena: await bcrypt.hash(contrasena, salt),
+            estado:'1',
         },{
-            fields:['nombre','correo','contrasena']
+            fields:['username','email','contrasena','estado']
         });
         res.status(201).json(newUsuario);
     }catch(error){
