@@ -14,6 +14,7 @@ import ingresosRoutes from "./routes/ingresos.routes.js";
 import usuarioRoutes from "./routes/usuario.routes.js";
 import empleadoRoutes from "./routes/empleado.routes.js"
 import unidadRoutes from "./routes/unidad.routes.js"
+import loginRoutes from "./routes/login.routes.js"
 
 
 import bcrypt from "bcrypt";
@@ -56,6 +57,7 @@ app.use("/api/proveedor", proveedorRoutes);
 app.use("/api/ingresos", ingresosRoutes); // Rutas de ingresos
 app.use("/api/usuarios", usuarioRoutes); // Rutas de ingresos
 app.use("/api/unidades", unidadRoutes); // Rutas de ingresos
+app.use("/api/login", loginRoutes);
 // Iniciar el servidor
 
 
